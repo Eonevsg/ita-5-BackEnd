@@ -38,8 +38,8 @@ public class AnswerController {
         if (personRepository.find(query).getId() == null) {
             personRepository.save(person);
             answerRepository.saveAll(answers);
+            //TODO patikrink ar veikia sitas
         }
-
         return answers;
     }
 }
