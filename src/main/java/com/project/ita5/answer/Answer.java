@@ -3,15 +3,29 @@ package com.project.ita5.answer;
 
 import org.springframework.data.annotation.Id;
 
-public class Answer {
+import java.io.Serializable;
+
+public class Answer implements Serializable {
     @Id
     private String id;
-    private String questionId;
+    private String question_id;
     private String answer;
+    private String person_id;
 
-    public Answer(String id, String questionId, String answer) {
-        this.id = id;
-        this.questionId = questionId;
-        this.answer = answer;
+    public String getQuestion_id() {
+        return question_id;
+    }
+
+    public String getPerson_id() {
+        return person_id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+
+    public String getAnswer() {
+        return answer;
     }
 }
