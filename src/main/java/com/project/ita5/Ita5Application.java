@@ -19,10 +19,10 @@ public class Ita5Application implements CommandLineRunner {
 	AnswerRepository repo;
 	@Override
 	public void run(String... args) throws Exception {
-//		repo.save(new Answer("119", "123", "answer"));
-//		repo.save(new Answer("122", "123", "answer"));
-//		repo.save(new Answer("121", "123", "answer"));
-//		repo.save(new Answer("120", "123", "answer"));
-		System.out.println(repo.findAll().toString());
+		repo.save(new Answer("119", "123", "answer"));
+		repo.save(new Answer("122", "123", "answer"));
+		repo.save(new Answer("121", "123", "answer"));
+		repo.save(new Answer("120", "123", "answer"));
+		//System.out.println(repo.findAll().toString());
 	}
 }
