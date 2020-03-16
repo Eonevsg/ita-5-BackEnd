@@ -11,8 +11,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/question")
 public class QuestionController {
-    @Autowired
+
     QuestionRepository questionRepository;
+
+    @Autowired
+    public QuestionController(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
+    }
 
     @GetMapping()
     public List<Question> getQuestions() {

@@ -16,10 +16,15 @@ import java.util.Optional;
 @RequestMapping("api/answer")
 public class AnswerController {
 
-    @Autowired
+
     AnswerRepository answerRepository;
     //@Autowired
     //PersonRepository personRepository;
+
+    @Autowired
+    public AnswerController(AnswerRepository answerRepository) {
+        this.answerRepository = answerRepository;
+    }
 
     @GetMapping()
     public List<Answer> getAnswers() {

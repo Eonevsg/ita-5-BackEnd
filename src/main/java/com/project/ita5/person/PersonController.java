@@ -16,8 +16,12 @@ import java.util.Optional;
 @RequestMapping("api/person")
 public class PersonController {
 
-    @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    public PersonController(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
 
     @GetMapping
     public List<Person> getPersons() {
