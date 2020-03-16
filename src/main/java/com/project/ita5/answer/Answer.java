@@ -12,12 +12,12 @@ public class Answer implements Serializable {
     public static final String SEQUENCE_NAME = "answers_sequence";
 
     @Id
-    private long id;
+    private String id;
     private String question_id;
     private String answer;
     private String person_id;
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -27,7 +27,7 @@ public class Answer implements Serializable {
         return person_id;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

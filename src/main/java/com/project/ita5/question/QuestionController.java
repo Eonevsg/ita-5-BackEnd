@@ -33,7 +33,7 @@ public class QuestionController {
 
     @PostMapping()
     public Question postQuestion(@RequestBody Question question) {
-        question.setId(sequenceGeneratorService.generateSequence(Question.SEQUENCE_NAME));
+        question.setId(Long.toString(sequenceGeneratorService.generateSequence(Question.SEQUENCE_NAME)));
         questionRepository.save(question);
         return question;
     }

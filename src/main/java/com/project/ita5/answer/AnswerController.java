@@ -20,8 +20,7 @@ public class AnswerController {
 
     AnswerRepository answerRepository;
     SequenceGeneratorService sequenceGeneratorService;
-    //@Autowired
-    //PersonRepository personRepository;
+
 
     @Autowired
     public AnswerController(AnswerRepository answerRepository, SequenceGeneratorService sequenceGeneratorService) {
@@ -41,11 +40,11 @@ public class AnswerController {
 
     @PostMapping()
     public List<Answer> postAnswers(@RequestBody List<Answer> answers) {
-        for (Answer answer:
-             answers) {
-            answer.setId(sequenceGeneratorService.generateSequence(Answer.SEQUENCE_NAME));
+        for (Answer answer :
+                answers) {
+            answer.setId(Long.toString(sequenceGeneratorService.generateSequence(Answer.SEQUENCE_NAME)));
         }
-            answerRepository.saveAll(answers);
+        answerRepository.saveAll(answers);
         return answers;
     }
 
