@@ -1,5 +1,6 @@
 package com.project.ita5.answer;
 
+import com.project.ita5.database_sequence.SequenceGeneratorService;
 import com.project.ita5.person.Person;
 import com.project.ita5.person.PersonController;
 import com.project.ita5.person.PersonRepository;
@@ -18,12 +19,14 @@ public class AnswerController {
 
 
     AnswerRepository answerRepository;
+    SequenceGeneratorService sequenceGeneratorService;
     //@Autowired
     //PersonRepository personRepository;
 
     @Autowired
-    public AnswerController(AnswerRepository answerRepository) {
+    public AnswerController(AnswerRepository answerRepository, SequenceGeneratorService sequenceGeneratorService) {
         this.answerRepository = answerRepository;
+        this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
     @GetMapping()
@@ -37,14 +40,13 @@ public class AnswerController {
     }
 
     @PostMapping()
-    public List<Answer> postAnswers(@RequestBody List<Answer> answers, @RequestBody Person person) {
-        //Query query = new Query();
-        //query.addCriteria(Criteria.where("email").is(person.getEmail()));
-        //if (personRepository.find(query).getId() == null) {
-          //  personRepository.save(person);
+    public List<Answer> postAnswers(@RequestBody List<Answer> answers) {
+        for (Answer answer:
+             answers) {
+            answer.setId(sequenceGeneratorService.generateSequence(Answer.SEQUENCE_NAME));
+        }
             answerRepository.saveAll(answers);
-            //TODO patikrink ar veikia sitas
-        //}
         return answers;
     }
+
 }
