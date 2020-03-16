@@ -2,10 +2,14 @@ package com.project.ita5.user;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import javax.validation.constraints.NotBlank;
 
 public class User {
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
+
     @Id
     private String id;
     @NotBlank
@@ -17,6 +21,18 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsertype(UserType usertype) {
+        this.usertype = usertype;
     }
 
     public String getId() {
