@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends MongoRepository<Person, String> {
-    Person find(Query query);
+    //Person find(Query query);
 }
