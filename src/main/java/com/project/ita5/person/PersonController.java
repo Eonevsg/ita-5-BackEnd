@@ -33,7 +33,7 @@ public class PersonController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public Optional<Person> getPerson(@PathParam("id") String id) {
+    public Optional<Person> getPerson(@PathVariable("id") String id) {
         return personRepository.findById(id);
     }
 
