@@ -1,12 +1,20 @@
 package com.project.ita5.question;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 public class Question {
+    @Transient
+    public static final String SEQUENCE_NAME = "questions_sequence";
+
     @Id
     private String id;
     private String full_question;
     private String short_question;
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getId() {
         return id;
