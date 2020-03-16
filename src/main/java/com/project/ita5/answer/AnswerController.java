@@ -18,8 +18,8 @@ public class AnswerController {
 
     @Autowired
     AnswerRepository answerRepository;
-    @Autowired
-    PersonRepository personRepository;
+    //@Autowired
+    //PersonRepository personRepository;
 
     @GetMapping()
     public List<Answer> getAnswers() {
@@ -33,13 +33,13 @@ public class AnswerController {
 
     @PostMapping()
     public List<Answer> postAnswers(@RequestBody List<Answer> answers, @RequestBody Person person) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("email").is(person.getEmail()));
-        if (personRepository.find(query).getId() == null) {
-            personRepository.save(person);
+        //Query query = new Query();
+        //query.addCriteria(Criteria.where("email").is(person.getEmail()));
+        //if (personRepository.find(query).getId() == null) {
+          //  personRepository.save(person);
             answerRepository.saveAll(answers);
             //TODO patikrink ar veikia sitas
-        }
+        //}
         return answers;
     }
 }

@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface PersonRepository extends MongoRepository<Person, String> {
-    Person find(Query query);
+    //Person find(Query query);
 }

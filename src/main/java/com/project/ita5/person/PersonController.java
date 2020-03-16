@@ -30,14 +30,8 @@ public class PersonController {
     }
 
     public boolean setPerson(Person person) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("email").is(person.getEmail()));
-        if (personRepository.find(query).getId() == null) {
             personRepository.save(person);
-            return true;
-        }
-        return false;
-
+        return true;
     }
 
 }
