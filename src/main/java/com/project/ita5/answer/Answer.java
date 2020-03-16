@@ -24,7 +24,6 @@ public class Answer implements Serializable {
         return id;
     }
 
-
     public String getAnswer() {
         return answer;
     }
