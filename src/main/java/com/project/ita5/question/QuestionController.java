@@ -22,13 +22,13 @@ public class QuestionController {
         this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
-    @CrossOrigin
+
     @GetMapping()
     public List<Question> getQuestions() {
         return questionRepository.findAll();
     }
 
-    @CrossOrigin
+
     @GetMapping(value="/{id}")
     public Optional<Question> getQuestion(@PathVariable("id") String id) {
         return questionRepository.findById(id);

@@ -28,13 +28,11 @@ public class AnswerController {
         this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
-    @CrossOrigin
     @GetMapping()
     public List<Answer> getAnswers() {
         return answerRepository.findAll();
     }
 
-    @CrossOrigin
     @GetMapping(value = "/{id}")
     public Optional<Answer> getAnswer(@PathVariable("id") String id) {
         return answerRepository.findById(id);
