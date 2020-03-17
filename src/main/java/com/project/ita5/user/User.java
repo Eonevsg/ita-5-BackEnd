@@ -1,15 +1,10 @@
 package com.project.ita5.user;
 
-
-import com.project.ita5.role.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+
 
 public class User {
     @Transient
@@ -21,18 +16,6 @@ public class User {
     private String username;
     @NotBlank
     private String password;
-
-    @DBRef
-    private ArrayList<String> roles;
-
-
-    public ArrayList<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(ArrayList<String> roles) {
-        this.roles = roles;
-    }
 
     public void setId(String id) {
         this.id = id;
