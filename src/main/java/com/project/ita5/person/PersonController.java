@@ -25,15 +25,15 @@ public class PersonController {
         this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
-    @CrossOrigin
+
     @GetMapping
     public List<Person> getPersons() {
         return personRepository.findAll();
     }
 
-    @CrossOrigin
+
     @GetMapping("/{id}")
-    public Optional<Person> getPerson(@PathParam("id") String id) {
+    public Optional<Person> getPerson(@PathVariable("id") String id) {
         return personRepository.findById(id);
     }
 
