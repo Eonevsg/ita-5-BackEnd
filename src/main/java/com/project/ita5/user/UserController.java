@@ -27,14 +27,15 @@ public class UserController {
     @GetMapping("/user")
     public List<User> getUsers() {
         List<User> temp = userRepository.findAll();
-        temp.forEach(user -> user.setPassword(null));
+        //temp.forEach(user -> user.setPassword(null));
         return temp;
     }
 
     @PostMapping("/sign-up")
     public User signUp(@RequestBody User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        new User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(new User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword())));
         return user;
     }
 }

@@ -39,7 +39,7 @@ public class PersonController {
 
     @PostMapping
     public String setPerson(@Valid @RequestBody Person person) {
-        person.setId(Long.toString(sequenceGeneratorService.generateSequence(Person.SEQUENCE_NAME)));
+        //person.setId(Long.toString(sequenceGeneratorService.generateSequence(Person.SEQUENCE_NAME)));
         personRepository.save(person);
         return person.getId();
     }

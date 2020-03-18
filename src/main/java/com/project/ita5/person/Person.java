@@ -31,9 +31,6 @@ public class Person {
     private String email;
     private String uni;
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getId() {
         return id;

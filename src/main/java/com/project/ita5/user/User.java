@@ -12,20 +12,15 @@ public class User {
 
     @Id
     private String id;
+
     @NotBlank
     private String username;
+
     @NotBlank
     private String password;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
+    public User(@NotBlank String username, @NotBlank String password) {
         this.username = username;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 

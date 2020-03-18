@@ -12,9 +12,6 @@ public class Question {
     private String full_question;
     private String short_question;
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getId() {
         return id;
