@@ -16,32 +16,27 @@ import java.util.Optional;
 @RequestMapping("api/person")
 public class PersonController {
 
-    PersonRepository personRepository;
-    SequenceGeneratorService sequenceGeneratorService;
+    private PersonServiceImpl personService;
 
     @Autowired
-    public PersonController(PersonRepository personRepository, SequenceGeneratorService sequenceGeneratorService) {
-        this.personRepository = personRepository;
-        this.sequenceGeneratorService = sequenceGeneratorService;
+    public PersonController(PersonServiceImpl personService) {
+        this.personService = personService;
     }
 
-
     @GetMapping
-    public List<Person> getPersons() {
-        return personRepository.findAll();
+    public List<Person> fetchPersons() {
+        return personService.findAll();
     }
 
 
     @GetMapping("/{id}")
-    public Optional<Person> getPerson(@PathVariable("id") String id) {
-        return personRepository.findById(id);
+    public Optional<Person> fetchPerson(@PathVariable("id") String id) {
+        return personService.findById(id);
     }
 
     @PostMapping
-    public String setPerson(@Valid @RequestBody Person person) {
-        person.setId(Long.toString(sequenceGeneratorService.generateSequence(Person.SEQUENCE_NAME)));
-        personRepository.save(person);
-        return person.getId();
+    public Person createPerson(@Valid @RequestBody Person person) {
+        return personService.save(person);
     }
 
 }

@@ -31,8 +31,16 @@ public class Person {
     private String email;
     private String uni;
 
-    public void setId(String id) {
+    public Person(String id, @NotBlank(message = "Name is required") @Size(min = 1, max = 100, message = "Name must be 1-100 characters long") String name, @NotBlank(message = "Surname is required") @Size(min = 1, max = 100, message = "Surname must be 1-100 characters long") String surname, @NotBlank(message = "Phone is required") @Pattern(
+            regexp = "^\\+?[0-9]+$",
+            message = "Phone number should be vaild"
+    ) String phone, @NotBlank(message = "Email is required") @Email(message = "Email should be valid") String email, String uni) {
         this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+        this.uni = uni;
     }
 
     public String getId() {

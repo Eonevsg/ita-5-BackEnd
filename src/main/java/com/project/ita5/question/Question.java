@@ -9,22 +9,24 @@ public class Question {
 
     @Id
     private String id;
-    private String full_question;
-    private String short_question;
+    private String fullQuestion;
+    private String shortQuestion;
 
-    public void setId(String id) {
+    public Question(String id, String fullQuestion, String shortQuestion) {
         this.id = id;
+        this.fullQuestion = fullQuestion;
+        this.shortQuestion = shortQuestion;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getFull_question() {
-        return full_question;
+    public String getFullQuestion() {
+        return fullQuestion;
     }
 
-    public String getShort_question() {
-        return short_question;
+    public String getShortQuestion() {
+        return shortQuestion;
     }
 }

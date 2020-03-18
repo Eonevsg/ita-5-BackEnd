@@ -13,31 +13,26 @@ import java.util.Optional;
 @RequestMapping("api/question")
 public class QuestionController {
 
-    QuestionRepository questionRepository;
-    SequenceGeneratorService sequenceGeneratorService;
+   private QuestionServiceImpl questionService;
 
-    @Autowired
-    public QuestionController(QuestionRepository questionRepository, SequenceGeneratorService sequenceGeneratorService) {
-        this.questionRepository = questionRepository;
-        this.sequenceGeneratorService = sequenceGeneratorService;
+   @Autowired
+    public QuestionController(QuestionServiceImpl questionService) {
+        this.questionService = questionService;
     }
 
-
     @GetMapping()
-    public List<Question> getQuestions() {
-        return questionRepository.findAll();
+    public List<Question> fetchuestions() {
+        return questionService.findAll();
     }
 
 
     @GetMapping(value="/{id}")
-    public Optional<Question> getQuestion(@PathVariable("id") String id) {
-        return questionRepository.findById(id);
+    public Optional<Question> fetchQuestion(@PathVariable("id") String id) {
+        return questionService.findById(id);
     }
 
     @PostMapping()
-    public Question postQuestion(@RequestBody Question question) {
-        question.setId(Long.toString(sequenceGeneratorService.generateSequence(Question.SEQUENCE_NAME)));
-        questionRepository.save(question);
-        return question;
+    public Question createQuestion(@RequestBody Question question) {
+        return questionService.save(question);
     }
 }

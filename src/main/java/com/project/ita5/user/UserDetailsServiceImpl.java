@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.project.ita5.user.User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);

@@ -5,6 +5,7 @@ import com.project.ita5.person.Person;
 import com.project.ita5.person.PersonController;
 import com.project.ita5.person.PersonRepository;
 import com.project.ita5.question.Question;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -17,35 +18,31 @@ import java.util.Optional;
 @RequestMapping("api/answer")
 public class AnswerController {
 
-
-    AnswerRepository answerRepository;
-    SequenceGeneratorService sequenceGeneratorService;
-
+    private AnswerService answerService;
 
     @Autowired
-    public AnswerController(AnswerRepository answerRepository, SequenceGeneratorService sequenceGeneratorService) {
-        this.answerRepository = answerRepository;
-        this.sequenceGeneratorService = sequenceGeneratorService;
+    public AnswerController(AnswerService answerService) {
+        this.answerService = answerService;
+    }
+
+
+    @GetMapping(value = "/all")
+    public List<Answer> fetchAnswers() {
+        return answerService.findAll();
     }
 
     @GetMapping()
-    public List<Answer> getAnswers() {
-        return answerRepository.findAll();
+    public List<Pair<Person, List<Answer>>> fetchAnswersWithPerson() {
+        return answerService.findAllWithPerson();
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<Answer> getAnswer(@PathVariable("id") String id) {
-        return answerRepository.findById(id);
+    public Optional<Answer> fetchAnswer(@PathVariable("id") String id) {
+        return answerService.find(id);
     }
 
     @PostMapping()
-    public List<Answer> postAnswers(@RequestBody List<Answer> answers) {
-        for (Answer answer :
-                answers) {
-            answer.setId(Long.toString(sequenceGeneratorService.generateSequence(Answer.SEQUENCE_NAME)));
-        }
-        answerRepository.saveAll(answers);
-        return answers;
+    public List<Answer> saveAnswers(@RequestBody List<Answer> answers) {
+        return answerService.saveAll(answers);
     }
-
 }

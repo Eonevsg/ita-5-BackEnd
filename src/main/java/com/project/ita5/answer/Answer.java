@@ -13,18 +13,21 @@ public class Answer implements Serializable {
 
     @Id
     private String id;
-    private String question_id;
+    private String questionId;
     private String answer;
-    private String person_id;
+    private String personId;
 
-    public void setId(String id) {
+    public Answer(String id, String questionId, String answer, String personId) {
         this.id = id;
+        this.questionId = questionId;
+        this.answer = answer;
+        this.personId = personId;
     }
 
-    public String getQuestion_id() { return question_id; }
+    public String getQuestionId() { return questionId; }
 
-    public String getPerson_id() {
-        return person_id;
+    public String getPersonId() {
+        return personId;
     }
 
     public String getId() {

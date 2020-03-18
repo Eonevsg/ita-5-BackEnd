@@ -8,4 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AnswerRepository extends MongoRepository<Answer, String> {
+    List<Answer> findAllByPersonIdOrderByQuestionId(String PersonId);
 }

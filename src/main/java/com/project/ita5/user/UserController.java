@@ -14,27 +14,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api")
 public class UserController {
-    private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userRepository = userRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
     }
 
-
     @GetMapping("/user")
-    public List<User> getUsers() {
-        List<User> temp = userRepository.findAll();
-        temp.forEach(user -> user.setPassword(null));
-        return temp;
+    public List<User> fetchUsers() {
+        return userService.findAll();
     }
 
     @PostMapping("/sign-up")
-    public User signUp(@RequestBody User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 }
