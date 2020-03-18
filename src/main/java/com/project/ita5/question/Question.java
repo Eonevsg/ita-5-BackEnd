@@ -12,6 +12,11 @@ public class Question {
     private String fullQuestion;
     private String shortQuestion;
 
+    public Question(String id, String fullQuestion, String shortQuestion) {
+        this.id = id;
+        this.fullQuestion = fullQuestion;
+        this.shortQuestion = shortQuestion;
+    }
 
     public String getId() {
         return id;
