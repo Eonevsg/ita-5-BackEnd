@@ -32,7 +32,7 @@ public class QuestionController {
     }
 
     @PostMapping()
-    public Question postQuestion(@RequestBody Question question) {
+    public Question createQuestion(@RequestBody Question question) {
         return questionService.save(question);
     }
 }
