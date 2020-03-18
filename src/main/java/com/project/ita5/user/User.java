@@ -19,6 +19,9 @@ public class User {
     @NotBlank
     private String password;
 
+    public User() {
+    }
+
     public User(@NotBlank String username, @NotBlank String password) {
         this.username = username;
         this.password = password;
