@@ -2,8 +2,6 @@ package com.project.ita5.answer.validator;
 
 
 import com.project.ita5.answer.Answer;
-import javafx.util.Pair;
-import org.springframework.beans.BeanUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

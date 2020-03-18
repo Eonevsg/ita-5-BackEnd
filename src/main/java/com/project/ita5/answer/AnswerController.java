@@ -1,16 +1,11 @@
 package com.project.ita5.answer;
 
 
-import com.project.ita5.person.Person;
-
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/answer")

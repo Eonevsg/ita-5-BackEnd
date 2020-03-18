@@ -1,7 +1,6 @@
 package com.project.ita5.answer;
 
 import com.project.ita5.person.Person;
-import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.validation.Valid;
 import java.util.List;
