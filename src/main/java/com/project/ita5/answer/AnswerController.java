@@ -30,7 +30,7 @@ public class AnswerController {
     }
 
     @GetMapping()
-    public List<Pair<Person, List<Answer>>> fetchAnswersWithPerson() {
+    public List<AnswerPerson> fetchAnswersWithPerson() {
         return answerService.findAllWithPerson();
     }
 

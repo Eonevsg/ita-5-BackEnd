@@ -27,7 +27,7 @@ public class QuestionController {
 
 
     @GetMapping(value="/{id}")
-    public Optional<Question> fetchQuestion(@PathVariable("id") String id) {
+    public Question fetchQuestion(@PathVariable("id") String id) {
         return questionService.findById(id);
     }
 

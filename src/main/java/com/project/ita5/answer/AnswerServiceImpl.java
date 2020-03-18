@@ -30,14 +30,13 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Pair<Person, List<Answer>>> findAllWithPerson() {
-        List<Pair<Person, List<Answer>>> personAnswerList = new ArrayList<>();
+    public List<AnswerPerson> findAllWithPerson() {
+        List<AnswerPerson> personAnswerList = new ArrayList<>();
         List<Person> personList = personRepository.findAll();
         for (Person person :
                 personList) {
             List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
-            Pair<Person, List<Answer>> personAnswerPair = new Pair<>(person, answerList);
-            personAnswerList.add(personAnswerPair);
+            personAnswerList.add(new AnswerPerson(person, answerList));
         }
         return personAnswerList;
     }

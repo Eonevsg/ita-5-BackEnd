@@ -11,5 +11,5 @@ public interface AnswerService {
     List<Answer> findAll();
     Answer find(String id);
     AnswerPerson saveAll(AnswerPerson answers);
-    List<Pair<Person, List<Answer>>> findAllWithPerson();
+    List<AnswerPerson> findAllWithPerson();
 }

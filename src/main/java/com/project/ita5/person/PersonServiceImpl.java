@@ -1,12 +1,11 @@
 package com.project.ita5.person;
 
 import com.project.ita5.database_sequence.SequenceGeneratorService;
-import com.project.ita5.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class PersonServiceImpl implements PersonService {
 
@@ -25,8 +24,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Optional<Person> findById(String id) {
-        return personRepository.findById(id);
+    public Person findById(String id) {
+        return personRepository.findById(id).orElse(null);
     }
 
     @Override
