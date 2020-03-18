@@ -42,7 +42,7 @@ public class AnswerController {
     }
 
     @PostMapping()
-    public List<Answer> postAnswers(@RequestBody List<Answer> answers) {
+    public List<Answer> saveAnswers(@RequestBody List<Answer> answers) {
         return answerService.saveAll(answers);
     }
 }
