@@ -2,14 +2,15 @@ package com.project.ita5.answer.validator;
 
 
 import com.project.ita5.answer.Answer;
+import javafx.util.Pair;
 import org.springframework.beans.BeanUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 
-public class AnswerValidator implements ConstraintValidator<Conditional, Object> {
-    private String selected;
+public class AnswerValidator implements ConstraintValidator<Conditional, String[]> {
+    private String[] selected;
     private int max;
     private String message;
     private String[] values;
@@ -23,12 +24,13 @@ public class AnswerValidator implements ConstraintValidator<Conditional, Object>
     }
 
     @Override
-    public boolean isValid(Object objectToValidate, ConstraintValidatorContext context) {
+    public boolean isValid(String[] objectToValidate, ConstraintValidatorContext context) {
         Boolean valid = false;
-        Answer actualValue = ((Answer) objectToValidate);
         try {
-            if (Arrays.asList(values).contains(actualValue)) {
-                valid = false;
+            if (Arrays.asList(values).contains(objectToValidate[0])) {
+                if (objectToValidate[1].length() > max) {
+                    valid = false;
+                }
             }
         } catch (Exception e) {
             return false;
