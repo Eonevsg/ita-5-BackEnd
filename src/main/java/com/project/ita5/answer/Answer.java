@@ -1,10 +1,15 @@
 package com.project.ita5.answer;
 
 
+
+import com.project.ita5.answer.validator.Conditional;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
+
+@Conditional(selected = "questionId", values = {"1", "2", "6"}, max = 250)
+@Conditional(selected = "questionId", values = {"3", "4", "5"}, max = 450)
 
 public class Answer implements Serializable {
 

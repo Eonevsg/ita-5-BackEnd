@@ -1,14 +1,11 @@
 package com.project.ita5.answer;
 
-import com.project.ita5.database_sequence.SequenceGeneratorService;
+
 import com.project.ita5.person.Person;
-import com.project.ita5.person.PersonController;
-import com.project.ita5.person.PersonRepository;
-import com.project.ita5.question.Question;
+
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,10 +15,10 @@ import java.util.Optional;
 @RequestMapping("api/answer")
 public class AnswerController {
 
-    private AnswerService answerService;
+    private AnswerServiceImpl answerService;
 
     @Autowired
-    public AnswerController(AnswerService answerService) {
+    public AnswerController(AnswerServiceImpl answerService) {
         this.answerService = answerService;
     }
 
