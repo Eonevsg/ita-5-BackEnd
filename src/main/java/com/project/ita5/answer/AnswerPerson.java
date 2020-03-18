@@ -9,6 +9,10 @@ public class AnswerPerson {
     Person person;
     List<Answer> answerList;
 
+    public AnswerPerson(Person person, List<Answer> answerList) {
+        this.person = person;
+        this.answerList = answerList;
+    }
 
     public Person getPerson() {
         return person;

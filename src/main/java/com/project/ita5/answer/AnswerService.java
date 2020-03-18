@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface AnswerService {
     List<Answer> findAll();
     Optional<Answer> find(String id);
-    List<Answer> saveAll(AnswerPerson answers);
+    AnswerPerson saveAll(AnswerPerson answers);
     List<Pair<Person, List<Answer>>> findAllWithPerson();
 }

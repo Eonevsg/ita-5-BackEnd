@@ -52,7 +52,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Answer> saveAll(AnswerPerson answers) {
+    public AnswerPerson saveAll(AnswerPerson answers) {
         Person currentPerson = personService.save(answers.person);
         if (currentPerson  != null) {
             String personId = currentPerson.getId();
@@ -64,8 +64,8 @@ public class AnswerServiceImpl implements AnswerService {
                         answer.getAnswer(),
                         personId));
             }
-            return answerRepository.findAllByPersonIdOrderByQuestionId(personId);
+            return new AnswerPerson(currentPerson, answerRepository.findAllByPersonIdOrderByQuestionId(personId));
         }
-        return new ArrayList<>();
+        return null;
     }
 }
