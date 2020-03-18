@@ -5,6 +5,6 @@ import java.util.Optional;
 
 public interface PersonService {
     List<Person> findAll();
-    Optional<Person> find(String id);
+    Optional<Person> findById(String id);
     Person save(Person person);
 }

@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface QuestionService {
     List<Question> findAll();
-    Optional<Question> find(String id);
+    Optional<Question> findById(String id);
     Question save(Question question);
 }
