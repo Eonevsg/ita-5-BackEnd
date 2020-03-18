@@ -1,13 +1,9 @@
 package com.project.ita5.question;
 
-import com.project.ita5.answer.Answer;
-import com.project.ita5.answer.AnswerRepository;
-import com.project.ita5.database_sequence.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/question")

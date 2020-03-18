@@ -3,7 +3,10 @@ package com.project.ita5.person;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class Person {
     @Transient

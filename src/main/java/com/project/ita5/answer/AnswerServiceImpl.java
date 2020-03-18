@@ -3,16 +3,12 @@ package com.project.ita5.answer;
 import com.project.ita5.database_sequence.SequenceGeneratorService;
 import com.project.ita5.person.Person;
 import com.project.ita5.person.PersonRepository;
-import com.project.ita5.person.PersonService;
 import com.project.ita5.person.PersonServiceImpl;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
