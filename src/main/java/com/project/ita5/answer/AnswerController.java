@@ -18,10 +18,10 @@ import java.util.Optional;
 @RequestMapping("api/answer")
 public class AnswerController {
 
-    private AnswerService answerService;
+    private AnswerServiceImpl answerService;
 
     @Autowired
-    public AnswerController(AnswerService answerService) {
+    public AnswerController(AnswerServiceImpl answerService) {
         this.answerService = answerService;
     }
 
@@ -42,7 +42,7 @@ public class AnswerController {
     }
 
     @PostMapping()
-    public List<Answer> saveAnswers(@RequestBody List<Answer> answers) {
-        return answerService.saveAll(answers);
+    public List<Answer> saveAnswers(@RequestBody AnswerPerson answerPerson) {
+        return answerService.saveAll(answerPerson);
     }
 }
