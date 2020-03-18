@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,13 +35,18 @@ public class AnswerController {
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<Answer> fetchAnswer(@PathVariable("id") String id) {
+    public Answer fetchAnswer(@PathVariable("id") String id) {
         return answerService.find(id);
     }
 
     @PostMapping()
-    public AnswerPerson saveAnswers(@RequestBody AnswerPerson answerPerson) {
+    public AnswerPerson saveAnswers(@RequestBody @Valid AnswerPerson answerPerson) {
         return answerService.saveAll(answerPerson);
+    }
+    @PostMapping(value = "/test")
+    public Answer save(@Valid @RequestBody Answer answer) {
+        //return answerService.save(answer);
+        return answer;
     }
 
 }

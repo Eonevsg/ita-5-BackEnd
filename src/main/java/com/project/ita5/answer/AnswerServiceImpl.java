@@ -48,8 +48,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Optional<Answer> find(String id) {
-        return answerRepository.findById(id);
+    public Answer find(String id) {
+        return answerRepository.findById(id).orElse(null);
     }
 
     @Override

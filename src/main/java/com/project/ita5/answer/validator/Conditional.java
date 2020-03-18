@@ -4,18 +4,18 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-@Repeatable(Conditionals.class)
+//@Repeatable(Conditionals.class)
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {AnswerValidator.class})
 public @interface Conditional {
 
 
-    String message() default "This field can't be longer than ";
+    String message() default "Wrong input.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-
-    String[] selected();
-    int max();
-    String[] values();
+//
+//    String[] selected();
+//    int max();
+//    String[] values();
 }

@@ -8,9 +8,7 @@ import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 
-@Conditional(selected = {"questionId", "answer"}, values = {"1", "2", "6"}, max = 250)
-@Conditional(selected = {"questionId", "answer"}, values = {"3", "4", "5"}, max = 450)
-
+@Conditional
 public class Answer implements Serializable {
 
     @Transient
