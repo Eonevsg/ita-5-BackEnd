@@ -9,6 +9,7 @@ import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,14 +30,13 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Pair<Person, List<Answer>>> findAllWithPerson() {
-        List<Pair<Person, List<Answer>>> personAnswerList = new ArrayList<>();
+    public List<AnswerPerson> findAllWithPerson() {
+        List<AnswerPerson> personAnswerList = new ArrayList<>();
         List<Person> personList = personRepository.findAll();
         for (Person person :
                 personList) {
             List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
-            Pair<Person, List<Answer>> personAnswerPair = new Pair<>(person, answerList);
-            personAnswerList.add(personAnswerPair);
+            personAnswerList.add(new AnswerPerson(person, answerList));
         }
         return personAnswerList;
     }
@@ -47,8 +47,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Optional<Answer> find(String id) {
-        return answerRepository.findById(id);
+    public Answer find(String id) {
+        return answerRepository.findById(id).orElse(null);
     }
 
     @Override

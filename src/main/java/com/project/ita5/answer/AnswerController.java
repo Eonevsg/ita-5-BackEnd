@@ -1,16 +1,14 @@
 package com.project.ita5.answer;
 
-import com.project.ita5.database_sequence.SequenceGeneratorService;
+
 import com.project.ita5.person.Person;
-import com.project.ita5.person.PersonController;
-import com.project.ita5.person.PersonRepository;
-import com.project.ita5.question.Question;
+
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
+
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,17 +30,23 @@ public class AnswerController {
     }
 
     @GetMapping()
-    public List<Pair<Person, List<Answer>>> fetchAnswersWithPerson() {
+    public List<AnswerPerson> fetchAnswersWithPerson() {
         return answerService.findAllWithPerson();
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<Answer> fetchAnswer(@PathVariable("id") String id) {
+    public Answer fetchAnswer(@PathVariable("id") String id) {
         return answerService.find(id);
     }
 
     @PostMapping()
-    public AnswerPerson saveAnswers(@RequestBody AnswerPerson answerPerson) {
+    public AnswerPerson saveAnswers(@RequestBody @Valid AnswerPerson answerPerson) {
         return answerService.saveAll(answerPerson);
     }
+    @PostMapping(value = "/test")
+    public Answer save(@Valid @RequestBody Answer answer) {
+        //return answerService.save(answer);
+        return answer;
+    }
+
 }

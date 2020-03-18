@@ -30,7 +30,7 @@ public class PersonController {
 
 
     @GetMapping("/{id}")
-    public Optional<Person> fetchPerson(@PathVariable("id") String id) {
+    public Person fetchPerson(@PathVariable("id") String id) {
         return personService.findById(id);
     }
 
