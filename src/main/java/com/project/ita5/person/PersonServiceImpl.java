@@ -31,11 +31,15 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person save(Person person) {
-        return personRepository.save(new Person(Long.toString(generateSequence.generateSequence(User.SEQUENCE_NAME)),
-                person.getName(),
-                person.getSurname(),
-                person.getPhone(),
-                person.getEmail(),
-                person.getUni()));
+        if (personRepository.findByEmail(person.getEmail()) == null) {
+            return personRepository.save(new Person(
+                    Long.toString(generateSequence.generateSequence(Person.SEQUENCE_NAME)),
+                    person.getName(),
+                    person.getSurname(),
+                    person.getPhone(),
+                    person.getEmail(),
+                    person.getUni()));
+        }
+        return null;
     }
 }

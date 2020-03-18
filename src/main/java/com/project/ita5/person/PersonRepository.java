@@ -8,4 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends MongoRepository<Person, String> {
+    Person findByEmail(String email);
 }
