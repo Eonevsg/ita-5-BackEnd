@@ -19,7 +19,7 @@ public class SchoolController {
     }
 
     @GetMapping
-    public List<Object> fetchSchools() {
+    public List<String> fetchSchools() {
         return schoolService.fetchSchools();
     }
 

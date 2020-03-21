@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface SchoolService {
 
-    List<Object> fetchSchools();
+    List<String> fetchSchools();
 
 }
