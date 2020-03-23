@@ -19,6 +19,11 @@ public class ApplicationExtra {
     public ApplicationExtra() {
     }
 
+    public ApplicationExtra(LocalDateTime dateTime, String status) {
+        this.dateTime = dateTime;
+        this.status = status;
+    }
+
     public ApplicationExtra(String status) {
         this.status = status;
     }

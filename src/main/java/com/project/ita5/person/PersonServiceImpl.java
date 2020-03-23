@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
                     person.getPhone(),
                     person.getEmail(),
                     person.getUni(),
-                    new ApplicationExtra(LocalDateTime.now())
+                    new ApplicationExtra(LocalDateTime.now(), "Nauja")
                     ));
         }
         return null;
