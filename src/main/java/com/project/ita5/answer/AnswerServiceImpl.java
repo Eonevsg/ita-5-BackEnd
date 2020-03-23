@@ -48,6 +48,19 @@ public class AnswerServiceImpl implements AnswerService {
         return answerRepository.findById(id).orElse(null);
     }
 
+
+    public AnswerPerson findPersonInfo(String id) {
+       List<Person> personList = personRepository.findAll();
+        for (Person person :
+                personList) {
+            if(person.getId().equals(id)){
+                List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
+                return new AnswerPerson(person, answerList);
+            }
+        }
+        return null;
+    }
+
     @Override
     public AnswerPerson saveAll(AnswerPerson answers) {
         Person currentPerson = personService.save(answers.person);

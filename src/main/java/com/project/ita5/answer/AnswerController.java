@@ -31,8 +31,8 @@ public class AnswerController {
     }
 
     @GetMapping(value = "/{id}")
-    public Answer fetchAnswer(@PathVariable("id") String id) {
-        return answerService.find(id);
+    public AnswerPerson fetchAnswer(@PathVariable("id") String id) {
+        return answerService.findPersonInfo(id);
     }
 
     @PostMapping()
