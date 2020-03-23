@@ -1,5 +1,7 @@
 package com.project.ita5.answer;
 
+import com.project.ita5.person.Person;
+
 import java.util.List;
 
 public interface AnswerService {
@@ -7,4 +9,5 @@ public interface AnswerService {
     Answer find(String id);
     AnswerPerson saveAll(AnswerPerson answers);
     List<AnswerPerson> findAllWithPerson();
+    AnswerPerson updatePerson(Person person);
 }

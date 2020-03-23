@@ -1,6 +1,7 @@
 package com.project.ita5.answer;
 
 import com.project.ita5.database_sequence.SequenceGeneratorService;
+import com.project.ita5.person.ApplicationExtra;
 import com.project.ita5.person.Person;
 import com.project.ita5.person.PersonRepository;
 import com.project.ita5.person.PersonServiceImpl;
@@ -63,5 +64,14 @@ public class AnswerServiceImpl implements AnswerService {
             return new AnswerPerson(currentPerson, answerRepository.findAllByPersonIdOrderByQuestionId(personId));
         }
         return null;
+    }
+
+    @Override
+    public AnswerPerson updatePerson(Person person) {
+        personRepository.save(new Person(person.getId(), new ApplicationExtra(
+                person.getExtra().getNotes(), person.getExtra().getApplicationValuation(), person.getExtra().getInterviewValuation(),
+                person.getExtra().getStatus()
+        )));
+        return new AnswerPerson(personRepository.findById(person.getId()).orElse(null), answerRepository.findAllByPersonIdOrderByQuestionId(person.getId()));
     }
 }
