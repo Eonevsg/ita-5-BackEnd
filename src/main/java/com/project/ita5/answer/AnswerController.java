@@ -1,6 +1,7 @@
 package com.project.ita5.answer;
 
 
+import com.project.ita5.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,11 @@ public class AnswerController {
     public Answer save(@Valid @RequestBody Answer answer) {
         //return answerService.save(answer);
         return answer;
+    }
+
+    @PatchMapping
+    public AnswerPerson updatePerson(@Valid @RequestBody Person person) {
+        return answerService.updatePerson(person);
     }
 
 }

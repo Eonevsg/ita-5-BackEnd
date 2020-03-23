@@ -4,6 +4,7 @@ import com.project.ita5.database_sequence.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -37,7 +38,9 @@ public class PersonServiceImpl implements PersonService {
                     person.getSurname(),
                     person.getPhone(),
                     person.getEmail(),
-                    person.getUni()));
+                    person.getUni(),
+                    new ApplicationExtra(LocalDateTime.now())
+                    ));
         }
         return null;
     }
