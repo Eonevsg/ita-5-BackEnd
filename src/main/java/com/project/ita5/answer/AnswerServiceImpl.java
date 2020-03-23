@@ -44,7 +44,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer find(String id) {
-        return null;
+        return answerRepository.findById(id).orElse(null);
     }
 
 
