@@ -1,6 +1,7 @@
 package com.project.ita5.answer;
 
 import com.project.ita5.database_sequence.SequenceGeneratorService;
+import com.project.ita5.email_sender.EmailServiceImpl;
 import com.project.ita5.person.ApplicationExtra;
 import com.project.ita5.person.Person;
 import com.project.ita5.person.PersonRepository;
@@ -17,13 +18,15 @@ public class AnswerServiceImpl implements AnswerService {
     private PersonRepository personRepository;
     private SequenceGeneratorService generateSequence;
     private PersonServiceImpl personService;
+    private EmailServiceImpl emailService;
 
     @Autowired
-    public AnswerServiceImpl(AnswerRepository answerRepository, PersonRepository personRepository, SequenceGeneratorService generateSequence, PersonServiceImpl personService) {
+    public AnswerServiceImpl(AnswerRepository answerRepository, PersonRepository personRepository, SequenceGeneratorService generateSequence, PersonServiceImpl personService, EmailServiceImpl emailService) {
         this.answerRepository = answerRepository;
         this.personRepository = personRepository;
         this.generateSequence = generateSequence;
         this.personService = personService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -74,6 +77,7 @@ public class AnswerServiceImpl implements AnswerService {
                         answer.getAnswer(),
                         personId));
             }
+            emailService.sendConfirmationEmail(currentPerson.getEmail());
             return new AnswerPerson(currentPerson, answerRepository.findAllByPersonIdOrderByQuestionId(personId));
         }
         return null;
