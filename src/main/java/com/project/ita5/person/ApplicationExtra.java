@@ -4,12 +4,13 @@ import java.time.LocalDateTime;
 
 public class ApplicationExtra {
     private LocalDateTime dateTime;
-    private String notes;
-    private String applicationValuation;
-    private String interviewValuation;
-    private String status;
+    private String notes = "";
+    private String applicationValuation = "";
+    private String interviewValuation = "";
+    private String status = "Nauja";
 
-    public ApplicationExtra(String notes, String applicationValuation, String interviewValuation, String status) {
+    public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation, String status) {
+        this.dateTime = dateTime;
         this.notes = notes;
         this.applicationValuation = applicationValuation;
         this.interviewValuation = interviewValuation;

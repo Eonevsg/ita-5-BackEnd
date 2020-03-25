@@ -52,8 +52,13 @@ public class Person {
     public Person() {
     }
 
-    public Person(String id, ApplicationExtra extra) {
-        this.id = id;
+    public Person(Person person, ApplicationExtra extra) {
+        this.id = person.getId();
+        this.name = person.getName();
+        this.surname = person.getSurname();
+        this.email = person.getEmail();
+        this.phone = person.getPhone();
+        this.uni = person.getUni();
         this.extra = extra;
     }
 
