@@ -9,9 +9,9 @@ import java.util.List;
 @RequestMapping("api/question")
 public class QuestionController {
 
-   private QuestionServiceImpl questionService;
+    private QuestionServiceImpl questionService;
 
-   @Autowired
+    @Autowired
     public QuestionController(QuestionServiceImpl questionService) {
         this.questionService = questionService;
     }
@@ -22,7 +22,7 @@ public class QuestionController {
     }
 
 
-    @GetMapping(value="/{id}")
+    @GetMapping(value = "/{id}")
     public Question fetchQuestion(@PathVariable("id") String id) {
         return questionService.findById(id);
     }
