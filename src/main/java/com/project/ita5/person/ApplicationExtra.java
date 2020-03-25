@@ -9,7 +9,8 @@ public class ApplicationExtra {
     private String interviewValuation;
     private String status;
 
-    public ApplicationExtra(String notes, String applicationValuation, String interviewValuation, String status) {
+    public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation, String status) {
+        this.dateTime = dateTime;
         this.notes = notes;
         this.applicationValuation = applicationValuation;
         this.interviewValuation = interviewValuation;

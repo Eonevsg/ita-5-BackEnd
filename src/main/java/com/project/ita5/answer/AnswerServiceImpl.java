@@ -9,6 +9,7 @@ import com.project.ita5.person.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,9 +84,23 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public AnswerPerson updatePerson(Person person) {
-        personRepository.save(new Person(person.getId(), new ApplicationExtra(
-                person.getExtra().getNotes(), person.getExtra().getApplicationValuation(), person.getExtra().getInterviewValuation(),
-                person.getExtra().getStatus()
+        Person personToUpdate = personRepository.findById(person.getId()).orElse(null);
+        String notesToUpdate =
+                (person.getExtra().getNotes() == null) ?
+                        personToUpdate.getExtra().getNotes() : person.getExtra().getNotes();
+        String applicationValuationToUpdate =
+                (person.getExtra().getApplicationValuation() == null) ?
+                        personToUpdate.getExtra().getApplicationValuation() : person.getExtra().getApplicationValuation();
+        String interviewValuationToUpdate =
+                (person.getExtra().getInterviewValuation() == null) ?
+                        personToUpdate.getExtra().getInterviewValuation() : person.getExtra().getInterviewValuation();
+        String statusToUpdate =
+                (person.getExtra().getStatus() == null) ?
+                        personToUpdate.getExtra().getStatus() : person.getExtra().getStatus();
+        personRepository.save(new Person(personToUpdate, new ApplicationExtra(
+                personToUpdate.getExtra().getDateTime(),
+                notesToUpdate, applicationValuationToUpdate, interviewValuationToUpdate,
+                statusToUpdate
         )));
         return new AnswerPerson(personRepository.findById(person.getId()).orElse(null), answerRepository.findAllByPersonIdOrderByQuestionId(person.getId()));
     }
