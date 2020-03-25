@@ -34,11 +34,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .anyRequest().permitAll()//TODO delete this line after when frontend sends jwt token
-//                .antMatchers(HttpMethod.POST, "/api/answer", "/api/person", LOG_IN_URL).permitAll()
-//                .antMatchers(SIGN_UP_URL).hasRole("ADMIN")
-//                .antMatchers("/api/question").hasRole("HR")
-//                .anyRequest().authenticated()
+//                .anyRequest().permitAll()//TODO delete this line after when frontend sends jwt token
+                .antMatchers(HttpMethod.POST, "/api/answer", "/api/person", LOG_IN_URL).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager()))
