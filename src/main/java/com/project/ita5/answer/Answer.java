@@ -1,7 +1,5 @@
 package com.project.ita5.answer;
 
-
-
 import com.project.ita5.answer.validator.Conditional;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -27,7 +25,9 @@ public class Answer implements Serializable {
         this.personId = personId;
     }
 
-    public String getQuestionId() { return questionId; }
+    public String getQuestionId() {
+        return questionId;
+    }
 
     public String getPersonId() {
         return personId;

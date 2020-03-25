@@ -33,8 +33,7 @@ public class AnswerServiceImpl implements AnswerService {
     public List<AnswerPerson> findAllWithPerson() {
         List<AnswerPerson> personAnswerList = new ArrayList<>();
         List<Person> personList = personRepository.findAll();
-        for (Person person :
-                personList) {
+        for (Person person : personList) {
             List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
             personAnswerList.add(new AnswerPerson(person, answerList));
         }
@@ -53,10 +52,9 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     public AnswerPerson findPersonInfo(String id) {
-       List<Person> personList = personRepository.findAll();
-        for (Person person :
-                personList) {
-            if(person.getId().equals(id)){
+        List<Person> personList = personRepository.findAll();
+        for (Person person : personList) {
+            if (person.getId().equals(id)) {
                 List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
                 return new AnswerPerson(person, answerList);
             }
@@ -67,7 +65,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public AnswerPerson saveAll(AnswerPerson answers) {
         Person currentPerson = personService.save(answers.person);
-        if (currentPerson  != null) {
+        if (currentPerson != null) {
             String personId = currentPerson.getId();
             for (Answer answer :
                     answers.answerList) {
