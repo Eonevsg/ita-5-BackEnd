@@ -40,7 +40,7 @@ public class AnswerController {
     }
 
     @PatchMapping
-    public AnswerPerson updatePerson(@Valid @RequestBody Person person) {
+    public AnswerPerson updatePerson(@RequestBody Person person) {
         return answerService.updatePerson(person);
     }
 
