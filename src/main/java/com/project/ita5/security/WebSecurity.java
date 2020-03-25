@@ -36,6 +36,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
 //                .anyRequest().permitAll()//TODO delete this line after when frontend sends jwt token
                 .antMatchers(HttpMethod.POST, "/api/answer", "/api/person", LOG_IN_URL).permitAll()
+                .antMatchers(HttpMethod.GET, "/api/school").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
