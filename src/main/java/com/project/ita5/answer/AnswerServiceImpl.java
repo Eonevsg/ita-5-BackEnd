@@ -69,7 +69,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public ResponseEntity saveAll(AnswerPerson answers) {
         ResponseEntity<Person> currentPerson = personService.save(answers.person);
-        if (!currentPerson.hasBody()) {
+        if (currentPerson.getStatusCode().isError()) {
             return currentPerson;
         }
 
