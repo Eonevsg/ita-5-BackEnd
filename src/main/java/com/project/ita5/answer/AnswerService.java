@@ -1,6 +1,7 @@
 package com.project.ita5.answer;
 
 import com.project.ita5.person.Person;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ public interface AnswerService {
 
     Answer find(String id);
 
-    AnswerPerson saveAll(AnswerPerson answers);
+    ResponseEntity saveAll(AnswerPerson answers);
 
-    List<AnswerPerson> findAllWithPerson();
+    ResponseEntity<List<AnswerPerson>> findAllWithPerson();
 
-    AnswerPerson updatePerson(Person person);
+    ResponseEntity updatePerson(Person person);
 }
