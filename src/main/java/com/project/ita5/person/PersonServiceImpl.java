@@ -2,6 +2,8 @@ package com.project.ita5.person;
 
 import com.project.ita5.database_sequence.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -30,9 +32,20 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person save(Person person) {
-        if (personRepository.findByEmail(person.getEmail()) == null) {
-            return personRepository.save(new Person(
+    public ResponseEntity save(Person person) {
+        if (personRepository.findByEmail(person.getEmail()) != null) {
+            return new ResponseEntity<>(
+                    "This email is already in use",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        if (personRepository.findByPhone(person.getPhone()) != null) {
+            return new ResponseEntity<>(
+                    "This phone number is already in use",
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        return new ResponseEntity<>(personRepository.save(new Person(
                     Long.toString(generateSequence.generateSequence(Person.SEQUENCE_NAME)),
                     person.getName(),
                     person.getSurname(),
@@ -40,8 +53,6 @@ public class PersonServiceImpl implements PersonService {
                     person.getEmail(),
                     person.getUni(),
                     new ApplicationExtra(LocalDateTime.now(), "Nauja")
-            ));
-        }
-        return null;
+            )), HttpStatus.OK);
     }
 }

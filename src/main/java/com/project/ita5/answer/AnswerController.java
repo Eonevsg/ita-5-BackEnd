@@ -2,6 +2,7 @@ package com.project.ita5.answer;
 
 import com.project.ita5.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,22 +26,22 @@ public class AnswerController {
     }
 
     @GetMapping()
-    public List<AnswerPerson> fetchAnswersWithPerson() {
+    public ResponseEntity<List<AnswerPerson>> fetchAnswersWithPerson() {
         return answerService.findAllWithPerson();
     }
 
     @GetMapping(value = "/{id}")
-    public AnswerPerson fetchAnswer(@PathVariable("id") String id) {
+    public ResponseEntity<AnswerPerson> fetchAnswer(@PathVariable("id") String id) {
         return answerService.findPersonInfo(id);
     }
 
     @PostMapping()
-    public AnswerPerson saveAnswers(@RequestBody @Valid AnswerPerson answerPerson) {
+    public ResponseEntity saveAnswers(@RequestBody @Valid AnswerPerson answerPerson) {
         return answerService.saveAll(answerPerson);
     }
 
     @PatchMapping
-    public AnswerPerson updatePerson(@RequestBody Person person) {
+    public ResponseEntity updatePerson(@RequestBody Person person) {
         return answerService.updatePerson(person);
     }
 

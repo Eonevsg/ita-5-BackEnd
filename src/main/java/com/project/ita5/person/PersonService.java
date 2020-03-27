@@ -1,5 +1,7 @@
 package com.project.ita5.person;
 
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 public interface PersonService {
@@ -7,5 +9,5 @@ public interface PersonService {
 
     Person findById(String id);
 
-    Person save(Person person);
+    ResponseEntity save(Person person);
 }
