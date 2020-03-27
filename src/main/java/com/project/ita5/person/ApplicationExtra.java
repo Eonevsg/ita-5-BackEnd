@@ -7,7 +7,7 @@ public class ApplicationExtra {
     private String notes = "";
     private String applicationValuation = "";
     private String interviewValuation = "";
-    private String status = "Nauja";
+    private String status;
 
     public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation, String status) {
         this.dateTime = dateTime;

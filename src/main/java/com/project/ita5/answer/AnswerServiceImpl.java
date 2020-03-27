@@ -91,19 +91,23 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public ResponseEntity updatePerson(Person person) {
         Person personToUpdate = personRepository.findById(person.getId()).orElse(null);
-        String notesToUpdate =
-                (person.getExtra().getNotes() == null) ?
-                        personToUpdate.getExtra().getNotes() : person.getExtra().getNotes();
-        String applicationValuationToUpdate =
-                (person.getExtra().getApplicationValuation() == null) ?
-                        personToUpdate.getExtra().getApplicationValuation() : person.getExtra().getApplicationValuation();
-        String interviewValuationToUpdate =
-                (person.getExtra().getInterviewValuation() == null) ?
-                        personToUpdate.getExtra().getInterviewValuation() : person.getExtra().getInterviewValuation();
-        String statusToUpdate =
-                (person.getExtra().getStatus() == null) ?
-                        personToUpdate.getExtra().getStatus() : person.getExtra().getStatus();
-        Person personToReturn = personRepository.save(new Person(personToUpdate, new ApplicationExtra(
+        String statusToUpdate;
+        Person personToReturn;
+        String notesToUpdate;
+        String applicationValuationToUpdate;
+        String interviewValuationToUpdate;
+        if ((person.getExtra().getStatus() == null)) {
+            notesToUpdate = person.getExtra().getNotes();
+            applicationValuationToUpdate = person.getExtra().getApplicationValuation();
+            interviewValuationToUpdate = person.getExtra().getInterviewValuation();
+            statusToUpdate = personToUpdate.getExtra().getStatus();
+        } else {
+            statusToUpdate = person.getExtra().getStatus();
+            notesToUpdate = personToUpdate.getExtra().getNotes();
+            applicationValuationToUpdate = personToUpdate.getExtra().getApplicationValuation();
+            interviewValuationToUpdate = personToUpdate.getExtra().getInterviewValuation();
+        }
+        personToReturn = personRepository.save(new Person(personToUpdate, new ApplicationExtra(
                 personToUpdate.getExtra().getDateTime(),
                 notesToUpdate, applicationValuationToUpdate, interviewValuationToUpdate,
                 statusToUpdate
