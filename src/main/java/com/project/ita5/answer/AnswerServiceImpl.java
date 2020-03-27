@@ -56,12 +56,10 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     public ResponseEntity<AnswerPerson> findPersonInfo(String id) {
-        List<Person> personList = personRepository.findAll();
-        for (Person person : personList) {
-            if (person.getId().equals(id)) {
-                List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
-                return new ResponseEntity<AnswerPerson>(new AnswerPerson(person, answerList), HttpStatus.OK);
-            }
+        Person person = personRepository.findById(id).orElse(null);
+        if (person != null) {
+            List<Answer> answerList = answerRepository.findAllByPersonIdOrderByQuestionId(person.getId());
+            return new ResponseEntity<AnswerPerson>(new AnswerPerson(person, answerList), HttpStatus.OK);
         }
         return new ResponseEntity("No such person exists", HttpStatus.BAD_REQUEST);
     }
@@ -110,6 +108,6 @@ public class AnswerServiceImpl implements AnswerService {
                 notesToUpdate, applicationValuationToUpdate, interviewValuationToUpdate,
                 statusToUpdate
         )));
-        return new ResponseEntity(new AnswerPerson(personToReturn, answerRepository.findAllByPersonIdOrderByQuestionId(person.getId())), HttpStatus.OK) ;
+        return new ResponseEntity(new AnswerPerson(personToReturn, answerRepository.findAllByPersonIdOrderByQuestionId(person.getId())), HttpStatus.OK);
     }
 }
