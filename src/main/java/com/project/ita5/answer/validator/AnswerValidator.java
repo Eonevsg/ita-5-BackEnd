@@ -20,22 +20,9 @@ public class AnswerValidator implements ConstraintValidator<Conditional, Answer>
     @Override
     public boolean isValid(Answer answer, ConstraintValidatorContext context) {
         try {
-            if (Arrays.asList(values250).contains(answer.getQuestionId())) {
-                if (answer.getAnswer().length() > 250) {
-                    context.buildConstraintViolationWithTemplate("This field can't be longer than 250 characters.").addConstraintViolation();
-                    return false;
-                }
-            } else if (Arrays.asList(values450).contains(answer.getQuestionId())) {
-                if (answer.getAnswer().length() > 450) {
-                    context.buildConstraintViolationWithTemplate("This field can't be longer than 450 characters.").addConstraintViolation();
-                    return false;
-                }
-            }
-            if (Arrays.asList(valuesYesNo).contains(answer.getQuestionId())) {
-                if (answer.getAnswer().isEmpty()) {
-                    context.buildConstraintViolationWithTemplate("This field can't be blank.").addConstraintViolation();
-                    return false;
-                }
+            if (answer.getAnswer().length() > 1000) {
+                context.buildConstraintViolationWithTemplate("This field can't be longer than 1000 characters.").addConstraintViolation();
+                return false;
             }
         } catch (Exception e) {
             return false;
