@@ -96,20 +96,23 @@ public class AnswerServiceImpl implements AnswerService {
         String notesToUpdate;
         String applicationValuationToUpdate;
         String interviewValuationToUpdate;
+        String testValuationToUpdate;
         if ((person.getExtra().getStatus() == null)) {
             notesToUpdate = person.getExtra().getNotes();
             applicationValuationToUpdate = person.getExtra().getApplicationValuation();
             interviewValuationToUpdate = person.getExtra().getInterviewValuation();
+            testValuationToUpdate = person.getExtra().getTestValuation();
             statusToUpdate = personToUpdate.getExtra().getStatus();
         } else {
             statusToUpdate = person.getExtra().getStatus();
             notesToUpdate = personToUpdate.getExtra().getNotes();
             applicationValuationToUpdate = personToUpdate.getExtra().getApplicationValuation();
             interviewValuationToUpdate = personToUpdate.getExtra().getInterviewValuation();
+            testValuationToUpdate = personToUpdate.getExtra().getTestValuation();
         }
         personToReturn = personRepository.save(new Person(personToUpdate, new ApplicationExtra(
                 personToUpdate.getExtra().getDateTime(),
-                notesToUpdate, applicationValuationToUpdate, interviewValuationToUpdate,
+                notesToUpdate, applicationValuationToUpdate, interviewValuationToUpdate, testValuationToUpdate,
                 statusToUpdate
         )));
         return new ResponseEntity(new AnswerPerson(personToReturn, answerRepository.findAllByPersonIdOrderByQuestionId(person.getId())), HttpStatus.OK);

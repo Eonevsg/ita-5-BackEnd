@@ -7,13 +7,15 @@ public class ApplicationExtra {
     private String notes = "";
     private String applicationValuation = "";
     private String interviewValuation = "";
+    private String testValuation="";
     private String status;
 
-    public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation, String status) {
+    public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation, String testValuation, String status) {
         this.dateTime = dateTime;
         this.notes = notes;
         this.applicationValuation = applicationValuation;
         this.interviewValuation = interviewValuation;
+        this.testValuation = testValuation;
         this.status = status;
     }
 
@@ -33,11 +35,12 @@ public class ApplicationExtra {
         this.dateTime = dateTime;
     }
 
-    public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation) {
+    public ApplicationExtra(LocalDateTime dateTime, String notes, String applicationValuation, String interviewValuation, String testValuation) {
         this.dateTime = dateTime;
         this.notes = notes;
         this.applicationValuation = applicationValuation;
         this.interviewValuation = interviewValuation;
+        this.testValuation = testValuation;
     }
 
     public LocalDateTime getDateTime() {
@@ -55,6 +58,7 @@ public class ApplicationExtra {
     public String getInterviewValuation() {
         return interviewValuation;
     }
+    public String getTestValuation() { return testValuation; }
 
     public String getStatus() {
         return status;
