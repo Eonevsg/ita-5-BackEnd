@@ -52,6 +52,7 @@ public class PersonServiceImpl implements PersonService {
                     person.getPhone(),
                     person.getEmail(),
                     person.getUni(),
+                    person.getContract(),
                     new ApplicationExtra(LocalDateTime.now(), "Nauja")
             )), HttpStatus.OK);
     }
