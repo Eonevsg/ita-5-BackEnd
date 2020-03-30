@@ -3,10 +3,7 @@ package com.project.ita5.person;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Person {
     @Transient
@@ -33,7 +30,7 @@ public class Person {
     private String email;
     @Size(max = 150, message = "Max length is 150 characters")
     private String uni;
-    @NotBlank(message = "Contract is required")
+    @NotNull(message = "Contract is required")
     private boolean contract;
 
     private ApplicationExtra extra;
