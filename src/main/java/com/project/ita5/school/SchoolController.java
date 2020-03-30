@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("api/school")
 public class SchoolController {
 
-    SchoolServiceImpl schoolService;
+    private SchoolServiceImpl schoolService;
 
     @Autowired
     public SchoolController(SchoolServiceImpl schoolService) {

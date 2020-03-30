@@ -29,7 +29,7 @@ import static com.project.ita5.security.SecurityConstants.TOKEN_PREFIX;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
 
-    @Autowired //nzn
+    @Autowired
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
@@ -44,17 +44,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                             creds.getUsername(),
                             creds.getPassword(),
                             new ArrayList<>())
-                    );
+            );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    protected  void successfulAuthentication(HttpServletRequest req,
-                                             HttpServletResponse res,
-                                             FilterChain chain,
-                                             Authentication auth) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest req,
+                                            HttpServletResponse res,
+                                            FilterChain chain,
+                                            Authentication auth) throws IOException, ServletException {
 
         String token = JWT.create()
                 .withSubject(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())

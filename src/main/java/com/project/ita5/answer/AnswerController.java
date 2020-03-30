@@ -1,7 +1,8 @@
 package com.project.ita5.answer;
 
-
+import com.project.ita5.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,23 +26,23 @@ public class AnswerController {
     }
 
     @GetMapping()
-    public List<AnswerPerson> fetchAnswersWithPerson() {
+    public ResponseEntity<List<AnswerPerson>> fetchAnswersWithPerson() {
         return answerService.findAllWithPerson();
     }
 
     @GetMapping(value = "/{id}")
-    public Answer fetchAnswer(@PathVariable("id") String id) {
-        return answerService.find(id);
+    public ResponseEntity<AnswerPerson> fetchAnswer(@PathVariable("id") String id) {
+        return answerService.findPersonInfo(id);
     }
 
     @PostMapping()
-    public AnswerPerson saveAnswers(@RequestBody @Valid AnswerPerson answerPerson) {
+    public ResponseEntity saveAnswers(@RequestBody @Valid AnswerPerson answerPerson) {
         return answerService.saveAll(answerPerson);
     }
-    @PostMapping(value = "/test")
-    public Answer save(@Valid @RequestBody Answer answer) {
-        //return answerService.save(answer);
-        return answer;
+
+    @PatchMapping
+    public ResponseEntity updatePerson(@RequestBody Person person) {
+        return answerService.updatePerson(person);
     }
 
 }
