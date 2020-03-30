@@ -33,17 +33,20 @@ public class Person {
     private String email;
     @Size(max = 150, message = "Max length is 150 characters")
     private String uni;
+    @NotBlank(message = "Contract is required")
+    private boolean contract;
 
     public Person(String id, @NotBlank(message = "Name is required") @Size(min = 1, max = 100, message = "Name must be 1-100 characters long") String name, @NotBlank(message = "Surname is required") @Size(min = 1, max = 100, message = "Surname must be 1-100 characters long") String surname, @NotBlank(message = "Phone is required") @Pattern(
             regexp = "^\\+?[0-9]+$",
             message = "Phone number should be vaild"
-    ) String phone, @NotBlank(message = "Email is required") @Email(message = "Email should be valid") String email, String uni) {
+    ) String phone, @NotBlank(message = "Email is required") @Email(message = "Email should be valid") String email, String uni, boolean contract) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.email = email;
         this.uni = uni;
+        this.contract = contract;
     }
 
     public String getId() {
@@ -68,5 +71,9 @@ public class Person {
 
     public String getUni() {
         return uni;
+    }
+
+    public boolean getContract() {
+        return contract;
     }
 }

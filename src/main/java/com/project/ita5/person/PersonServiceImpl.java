@@ -37,7 +37,8 @@ public class PersonServiceImpl implements PersonService {
                     person.getSurname(),
                     person.getPhone(),
                     person.getEmail(),
-                    person.getUni()));
+                    person.getUni(),
+                    person.getContract()));
         }
         return null;
     }
