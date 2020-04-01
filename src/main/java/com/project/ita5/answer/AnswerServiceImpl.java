@@ -91,30 +91,30 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public ResponseEntity updatePerson(Person person) {
         Person personToUpdate = personRepository.findById(person.getId()).orElse(null);
-        String statusToUpdate;
+
         Person personToReturn;
-        String notesToUpdate;
-        String applicationValuationToUpdate;
-        String interviewValuationToUpdate;
-        String testValuationToUpdate;
+        ApplicationExtra applicationExtra;
+
         if ((person.getExtra().getStatus() == null)) {
-            notesToUpdate = person.getExtra().getNotes();
-            applicationValuationToUpdate = person.getExtra().getApplicationValuation();
-            interviewValuationToUpdate = person.getExtra().getInterviewValuation();
-            testValuationToUpdate = person.getExtra().getTestValuation();
-            statusToUpdate = personToUpdate.getExtra().getStatus();
+
+            applicationExtra = createApplicationExtra(person, personToUpdate.getExtra().getDateTime(),
+                    personToUpdate.getExtra().getStatus());
         } else {
-            statusToUpdate = person.getExtra().getStatus();
-            notesToUpdate = personToUpdate.getExtra().getNotes();
-            applicationValuationToUpdate = personToUpdate.getExtra().getApplicationValuation();
-            interviewValuationToUpdate = personToUpdate.getExtra().getInterviewValuation();
-            testValuationToUpdate = personToUpdate.getExtra().getTestValuation();
+            applicationExtra = createApplicationExtra(personToUpdate, personToUpdate.getExtra().getDateTime(),
+                    person.getExtra().getStatus());
         }
-        personToReturn = personRepository.save(new Person(personToUpdate, new ApplicationExtra(
-                personToUpdate.getExtra().getDateTime(),
-                notesToUpdate, applicationValuationToUpdate, interviewValuationToUpdate, testValuationToUpdate,
-                statusToUpdate
-        )));
-        return new ResponseEntity(new AnswerPerson(personToReturn, answerRepository.findAllByPersonIdOrderByQuestionId(person.getId())), HttpStatus.OK);
+        personToReturn = personRepository.save(new Person(personToUpdate, applicationExtra));
+        return new ResponseEntity(new AnswerPerson(personToReturn,
+                answerRepository.findAllByPersonIdOrderByQuestionId(person.getId())), HttpStatus.OK);
+    }
+
+    ApplicationExtra createApplicationExtra(Person person, LocalDateTime date, String status) {
+        return new ApplicationExtra(
+                date,
+                person.getExtra().getNotes(),
+                person.getExtra().getApplicationValuation(),
+                person.getExtra().getInterviewValuation(),
+                person.getExtra().getTestValuation(),
+                status);
     }
 }
