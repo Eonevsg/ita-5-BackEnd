@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
         //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (userRepository.findByUsername(user.getUsername()) == null) {
             Set<UserType> authorities = new HashSet<UserType>();
-            authorities.add(UserType.HR);
             userRepository.save(new User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword()), authorities));
         }
         return userRepository.findByUsername(user.getUsername());
