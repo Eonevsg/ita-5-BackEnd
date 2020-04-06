@@ -24,5 +24,8 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
-
+    @DeleteMapping("/user")
+    public User deleteUser(@RequestBody String id) {
+        return userService.deleteUser(id);
+    }
 }

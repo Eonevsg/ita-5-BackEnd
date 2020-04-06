@@ -37,10 +37,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/answer", "/api/person").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/answer", "/api/person", "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/school").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/answer**", "/api/answer/**").hasRole(UserType.HR.name())
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.GET, "/api/answer**", "/api/answer/**").hasAuthority("HR")
+                .anyRequest().hasAuthority("HR")
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager()))
