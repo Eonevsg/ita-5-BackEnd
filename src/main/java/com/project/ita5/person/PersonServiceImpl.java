@@ -35,13 +35,13 @@ public class PersonServiceImpl implements PersonService {
     public ResponseEntity save(Person person) {
         if (personRepository.findByEmail(person.getEmail()) != null) {
             return new ResponseEntity<>(
-                    "This email is already in use",
+                    "Registracijos forma jau yra pateikta su šiuo el. pašto adresu.",
                     HttpStatus.BAD_REQUEST
             );
         }
         if (personRepository.findByPhone(person.getPhone()) != null) {
             return new ResponseEntity<>(
-                    "This phone number is already in use",
+                    "Registracijos forma jau yra pateikta su šiuo tel. numeriu.",
                     HttpStatus.BAD_REQUEST
             );
         }
