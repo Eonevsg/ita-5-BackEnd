@@ -6,4 +6,5 @@ public interface UserService {
     User createUser(User user);
 
     List<User> findAll();
+    User deleteUser(String id);
 }
