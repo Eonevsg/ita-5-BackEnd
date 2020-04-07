@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 public class User {
     @Transient
@@ -15,12 +16,15 @@ public class User {
     @NotBlank
     private String password;
 
+    private Set<UserType> roles;
+
     public User() {
     }
 
-    public User(@NotBlank String username, @NotBlank String password) {
+    public User(@NotBlank String username, @NotBlank String password, Set roles) {
         this.username = username;
         this.password = password;
+        this.roles = roles;
     }
 
     public String getId() {
@@ -33,5 +37,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public Set getRoles() {
+        return roles;
     }
 }

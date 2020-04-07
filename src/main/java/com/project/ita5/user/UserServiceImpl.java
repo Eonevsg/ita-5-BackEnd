@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,7 +24,8 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (userRepository.findByUsername(user.getUsername()) == null) {
-            userRepository.save(new User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword())));
+            Set<UserType> authorities = new HashSet<UserType>();
+            userRepository.save(new User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword()), authorities));
         }
         return userRepository.findByUsername(user.getUsername());
     }
@@ -30,5 +33,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User deleteUser(String id) {
+        userRepository.deleteById(id);
+        return userRepository.findById(id).orElse(null);
     }
 }
