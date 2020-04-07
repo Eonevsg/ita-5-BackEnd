@@ -10,12 +10,12 @@ public class Question {
     @Id
     private String id;
     private String fullQuestion;
-    private String shortQuestion;
+    private String enFullQuestion;
 
-    public Question(String id, String fullQuestion, String shortQuestion) {
+    public Question(String id, String fullQuestion, String enFullQuestion) {
         this.id = id;
         this.fullQuestion = fullQuestion;
-        this.shortQuestion = shortQuestion;
+        this.enFullQuestion = enFullQuestion;
     }
 
     public String getId() {
@@ -26,7 +26,7 @@ public class Question {
         return fullQuestion;
     }
 
-    public String getShortQuestion() {
-        return shortQuestion;
+    public String getEnFullQuestion() {
+        return enFullQuestion;
     }
 }

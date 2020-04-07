@@ -33,7 +33,7 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.save(new Question(
                 Long.toString(generateSequence.generateSequence(Question.SEQUENCE_NAME)),
                 question.getFullQuestion(),
-                question.getShortQuestion()
+                question.getEnFullQuestion()
         ));
     }
 }
