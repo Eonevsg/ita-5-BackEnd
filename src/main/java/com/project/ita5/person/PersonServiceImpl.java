@@ -2,6 +2,7 @@ package com.project.ita5.person;
 
 import com.project.ita5.database_sequence.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,21 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public ResponseEntity save(Person person) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("content-type", "application/json");
         if (personRepository.findByEmail(person.getEmail()) != null) {
-            return new ResponseEntity<>(
-                    "Registracijos forma jau yra pateikta su šiuo el. pašto adresu.",
+            return new ResponseEntity(
+                    "{\"ltErrorMessage\":" + "\"Registracijos forma jau yra pateikta su šiuo el. pašto adresu.\","
+                    +"\"enErrorMessage\":" + "\"Application with this email already exists.\"}",
+                    responseHeaders,
                     HttpStatus.BAD_REQUEST
             );
         }
         if (personRepository.findByPhone(person.getPhone()) != null) {
-            return new ResponseEntity<>(
-                    "Registracijos forma jau yra pateikta su šiuo tel. numeriu.",
+            return new ResponseEntity(
+                    "{\"ltErrorMessage\":" + "\"Registracijos forma jau yra pateikta su šiuo tel. numeriu.\","
+                            +"\"enErrorMessage\":" + "\"Application with this phone number already exists.\"}",
+                    responseHeaders,
                     HttpStatus.BAD_REQUEST
             );
         }

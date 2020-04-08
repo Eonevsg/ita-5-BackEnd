@@ -108,7 +108,7 @@ public class AnswerServiceImpl implements AnswerService {
                 answerRepository.findAllByPersonIdOrderByQuestionId(person.getId())), HttpStatus.OK);
     }
 
-    ApplicationExtra createApplicationExtra(Person person, LocalDateTime date, String status) {
+    private ApplicationExtra createApplicationExtra(Person person, LocalDateTime date, String status) {
         return new ApplicationExtra(
                 date,
                 person.getExtra().getNotes(),
